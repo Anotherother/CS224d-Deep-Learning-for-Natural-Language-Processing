@@ -33,14 +33,14 @@ def softmax(x):
     print (x.size)
     if len(x.shape) > 1: # Если длина вектора больше
         # Matrix
-        result = x - np.max(x, axis=1)
-        result = np.divide( np.exp(result) , np.sum(np.exp(result),axis=1))
+        result = x - np.max(x, axis=1).reshape(x.shape[0],1)
+        result = np.divide( np.exp(result) , np.sum(np.exp(result),axis=1, keepdims=True))
         ### END YOUR CODE
     else:
         # Vector
         result = x - np.max(x, axis=0)
         print ('debug', result)
-        result = np.divide(np.exp(result), np.sum (np.exp(result), axis=0))
+        result = np.divide(np.exp(result), np.sum (np.exp(result), axis=0, keepdims=True))
         ### END YOUR CODE
 
     print (result.shape)
